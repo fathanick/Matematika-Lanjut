@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Pengantar Metode Numerik | Metode Numerik dengan Bahasa R</title>
+  <meta name="description" content="Chapter 1 Pengantar Metode Numerik | Metode Numerik dengan Bahasa R" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Pengantar Metode Numerik | Metode Numerik dengan Bahasa R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Pengantar Metode Numerik | Metode Numerik dengan Bahasa R" />
+  
+  
+  
+
+<meta name="author" content="Tim Dosen Matematika Lanjut" />
+
+
+<meta name="date" content="2020-11-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="literature.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Metode Numerik dengan Bahasa R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Pengantar</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Pengantar Metode Numerik</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#penyelesaian-persoalan-matematika"><i class="fa fa-check"></i><b>1.1</b> Penyelesaian Persoalan Matematika</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#tahap-penyelesaian-numerik"><i class="fa fa-check"></i><b>1.2</b> Tahap Penyelesaian Numerik</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>2</b> Literature</a></li>
+<li class="chapter" data-level="3" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>3</b> Methods</a></li>
+<li class="chapter" data-level="4" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>4</b> Applications</a><ul>
+<li class="chapter" data-level="4.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>4.1</b> Example one</a></li>
+<li class="chapter" data-level="4.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>4.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>5</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Metode Numerik dengan Bahasa R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Pengantar Metode Numerik</h1>
+<p>Bagian ini akan menjelaskan tentang gambaran umum metode numerik.</p>
+<div id="penyelesaian-persoalan-matematika" class="section level2">
+<h2><span class="header-section-number">1.1</span> Penyelesaian Persoalan Matematika</h2>
+<p>Dalam dunia ilmu pengetahuan, ada banyak persoalan yang dapat dimodelkan secara matematis. Model matematika yang dihasilkan ada yang berupa model sederhana dan terkadang berupa model yang cukup rumit. Secara umum, ada dua metode yang dapat dilakukan untuk menyelesaikan model matematika, yaitu <strong>metode analitik</strong> dan <strong>metode numerik</strong>.</p>
+<p><strong>1. Metode Analitik</strong>
+Metode analitik biasa digunakan untuk menyelesaikan permasalahan model matematika yang sederhana dengan menggunakan rumus-rumus aljabar yang sudah baku.
+Misalnya, apabila kita diberikan soal untuk mencari akar-akar polinom berderajad 2 seperti <span class="math inline">\(x^2+3x+3=0\)</span>. Untuk mencari akar-akar polinom tersebut, kita dapat menggunakan pendekatan faktorisasi atau dengan rumus <em>abc</em>.</p>
+<p><strong>2. Metode Numerik</strong>
+Metode numerik cenderung digunakan untuk membantu dalam penyelesaian model matematika yang rumit yang tidak dapat diselesaikan menggunakan metode analitik. Terkadang model matematika yang rumit masih dapat diselesaikan dengan pendekatan analitik, akan tetapi dengan proses penyelesaian yang rumit dan tidak efisien.Pada metode numerik, teknik penyelesaian dilakukan menggunakan operasi hitungan (tambah, kurang, kali, bagi).
+Berikut ini merupakan contoh persoalan matematika yang dapat diselesaikan dengan metode numerik:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Mencari akar-akar persamaan polinom:</li>
+</ol>
+<p><span class="math inline">\(23.4x^7-1.25x^6+120x^4+15x^3-120x^2-x+100=0\)</span></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Mencari nilai integral tentu dari:</li>
+</ol>
+<p><span class="math inline">\(\int_{1.2}^{2.5} (\sqrt{(45.3e^{7x}+\frac{100}{x})^4}+\frac{4}{(x^2+1)} \,dx\)</span></p>
+<p><strong>Metode Analitik versus Metode Numerik</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col width="36%" />
+<col width="31%" />
+<col width="31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Perbedaan</th>
+<th align="center">Metode Analitik</th>
+<th align="right">Metode Numerik</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Persoalan</td>
+<td align="center">Sederhana</td>
+<td align="right">Sederhana maupun rumit</td>
+</tr>
+<tr class="even">
+<td align="left">Metode Penyelesaian</td>
+<td align="center">Menggunakan rumus aljabar yang sudah baku</td>
+<td align="right">Menggunakan operasi hitungan aritmatika biasa (+,-,x,:)</td>
+</tr>
+<tr class="odd">
+<td align="left">Solusi</td>
+<td align="center">Solusi sejati (galat = 0)</td>
+<td align="right">Solusi pendekatan (dengan galat)</td>
+</tr>
+<tr class="even">
+<td align="left">Hasil akhir</td>
+<td align="center">Berupa fungsi</td>
+<td align="right">Berupa angka</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tahap-penyelesaian-numerik" class="section level2">
+<h2><span class="header-section-number">1.2</span> Tahap Penyelesaian Numerik</h2>
+<p>Penyelesaian persoalan dengan pendekatan numerik dapat dilakukan dengan enam tahap berikut:</p>
+<ol style="list-style-type: decimal">
+<li><p><em>Pemodelan</em></p>
+<p>Tahap pemodelan dilakukan dengan memodelkan permasalahan dari dunia nyata ke dalam persamaan matematika, seperti model linier atau non-linier.</p></li>
+<li><p><em>Penyederhanaan Model</em></p>
+<p>Pada tahap ini, dilakukan proses penyederhanaan model dari hasil pemodelan tahap pertama apabila model yang diperoleh masih terlalu rumit, seperti masih terdapat banyak variabel.</p></li>
+<li><p><em>Formulasi Numerik</em></p>
+<p>Tahap formulasi numerik diimplementasikan dengan menentukan metode numerik yang akan dipakai secara bersama dengan analisis eror awal (berupa perkiraan eror, penentuan ukuran langkah, dsb.). Setelah itu, baru kemudian disusun algoritme berdasarkan metode numerik yang telah ditentukan.</p></li>
+<li><p><em>Pemrograman</em></p>
+<p>Hasil formulasi yang telah didapat kemudian diterjemahkan ke dalam bahasa pemrograman tertentu.</p></li>
+<li><p><em>Operasional</em></p>
+<p>Program komputer yang telah dibuat kemudian diujicobakan dengan data stimulasi dan hasilnya dievaluasi. Setelah diperloleh hasil yang telah sesuai, selanjutnya dioperasikan dengan data yang sebenarnya.</p></li>
+<li><p><em>Evaluasi</em></p>
+<p>Hasil yang telah diperoleh kemudian diinterpretasikan dengan menganalisis hasil keluaran program dan membandingkannya dengan prinsip dasar untuk memperkirakan kualitas solusi numerik yang dihasilkan.</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="literature.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Metode Numerik.pdf", "Metode Numerik.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
