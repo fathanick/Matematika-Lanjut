@@ -24,7 +24,7 @@
 <meta name="author" content="Tim Dosen Matematika Lanjut" />
 
 
-<meta name="date" content="2020-11-02" />
+<meta name="date" content="2020-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -76,6 +76,7 @@
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Pengantar Metode Numerik</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#penyelesaian-persoalan-matematika"><i class="fa fa-check"></i><b>1.1</b> Penyelesaian Persoalan Matematika</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#tahap-penyelesaian-numerik"><i class="fa fa-check"></i><b>1.2</b> Tahap Penyelesaian Numerik</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#analisis-eror"><i class="fa fa-check"></i><b>1.3</b> Analisis Eror</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>2</b> Literature</a></li>
 <li class="chapter" data-level="3" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>3</b> Methods</a></li>
@@ -180,6 +181,75 @@ Berikut ini merupakan contoh persoalan matematika yang dapat diselesaikan dengan
 <li><p><em>Evaluasi</em></p>
 <p>Hasil yang telah diperoleh kemudian diinterpretasikan dengan menganalisis hasil keluaran program dan membandingkannya dengan prinsip dasar untuk memperkirakan kualitas solusi numerik yang dihasilkan.</p></li>
 </ol>
+</div>
+<div id="analisis-eror" class="section level2">
+<h2><span class="header-section-number">1.3</span> Analisis Eror</h2>
+<p>Dalam metode numerik, kita hanya mendapatkan solusi persalahan yang mendekati solusi sebenarnya sehingga solusi numerik disebut dengan <strong>solusi pendekatan</strong> atau <strong>solusi hampiran</strong> atau disebut pula dengan <em>(approximation)</em>. Solusi hampiran ini tidak persis tepat dengan solusi sebenarnya, sehingga terdapat selisih antara solusi hampiran dengan solusi sebenarnya. Selisih ini disebut dengan <strong>galat</strong> atau <strong>eror</strong>. Semakin kecil nilai eror, maka solusi numerik yang didapatkan akan semakin teliti.</p>
+<p>Pengukuran eror dapat dibagi menjadi dua, yaitu <em>eror absolut</em> dan <em>eror relatif</em>.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Eror Absolut</strong></li>
+</ol>
+<p>Eror absolut atau eror mutlak merupakan selisih antara nilai sebenarnya <span class="math inline">\((x)\)</span> dengan nilai perkiraan <span class="math inline">\((x&#39;)\)</span>. Eror absolut dapat didefinisikan dalam persamaan <a href="intro.html#eq:erorAbsolut">(1.1)</a>:</p>
+<p><span class="math display" id="eq:erorAbsolut">\[\begin{equation*} 
+  \epsilon_{A} = \lvert x-x&#39; \rvert
+  \tag{1.1}
+\end{equation*}\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Eror Relatif</strong></li>
+</ol>
+<p>Eror relatif diperoleh dengan membagi selisih nilai sebenarnya <span class="math inline">\((x)\)</span> dan nilai perkiraan <span class="math inline">\((x&#39;)\)</span> dengan nilai sebenarnya. Persamaan eror relatif dapat didefinisikan sebagai <a href="intro.html#eq:erorRelatif1">(1.2)</a></p>
+<p><span class="math display" id="eq:erorRelatif1">\[\begin{equation*} 
+  \epsilon_{R} = \left| \frac{x-x&#39;}{x} \right|
+  \tag{1.2}
+\end{equation*}\]</span></p>
+<p>atau dalam persentase,</p>
+<p><span class="math display" id="eq:erorRelatif2">\[\begin{equation*} 
+  \epsilon_{R} = \left| \frac{x-x&#39;}{x} \times 100 \% \right|
+  \tag{1.3}
+\end{equation*}\]</span></p>
+<p>Galat relatif di atas dinormalkan terhadap nilai sebenarnya/nilai sejati, sehingga dapat disebut pula dengan <strong>galat relatif sejati</strong>.</p>
+<p>Dalam praktik di dunia nyata, kita tidak mengetahui nilai sebenarnya <span class="math inline">\((x)\)</span>, oleh karena itu nilai galat <span class="math inline">\((\epsilon)\)</span> sering dinormalkan terhadap solusi pendekatannya, sehingga galat relatifnya disebut dengan <strong>galat relatif pendekatan</strong>:</p>
+<p><span class="math display" id="eq:erorRelatif2">\[\begin{equation*} 
+  \epsilon_{R} = \left| \frac{\epsilon}{x&#39;} \right|
+  \tag{1.3}
+\end{equation*}\]</span></p>
+<p><strong>Contoh 1:</strong></p>
+<p>Misal diketahui nilai sejati adalah <span class="math inline">\(\frac{10}{3}\)</span> dan nilai pendekatan <span class="math inline">\(3.333\)</span>. Hitunglah:</p>
+<ol style="list-style-type: decimal">
+<li>Galat</li>
+<li>Galat absolut</li>
+<li>Galat relatif</li>
+<li>Galat relatif pendekatan</li>
+</ol>
+<p><strong>Solusi</strong></p>
+<ol style="list-style-type: decimal">
+<li>Galat = <span class="math inline">\(\frac{10}{3} - 3.333 = \frac{10}{3} - \frac{3333}{1000} = \frac{1}{3000} = 0.000333\)</span></li>
+<li>Galat absolut = <span class="math inline">\(\lvert 0.000333 \rvert = 0.000333\)</span></li>
+<li>Galat relatif = <span class="math inline">\(\frac{1/3000}{10/3} = \frac{1}{1000} = 0.0001\)</span></li>
+<li>Galat relatif pendekatan = <span class="math inline">\(\frac{1/3000}{3.333} = \frac{1}{9999}\)</span></li>
+</ol>
+<p>Perhitungan numerik yang menggunakan pendekatan <em>iterasi</em>, galat relatif pendekatan dihitung dengan persamaan</p>
+<p><span class="math display" id="eq:erorIterasi">\[\begin{equation*} 
+  \epsilon_{RA} = \left| \frac{x_{r+1}-x_{r}}{x_{r+1}} \right|
+  \tag{1.4}
+\end{equation*}\]</span></p>
+<p>di mana, <span class="math inline">\(x_{r+1}\)</span> merupakan nilai pendekatan iterasi saat ini dan <span class="math inline">\(x_{r}\)</span> merupakan nilai pendekatan iterasi sebelumnya.</p>
+<p>Proses iterasi ini akan dihentikan apabila <span class="math inline">\(\lvert \epsilon_{RA} \rvert &lt; \epsilon_{s}\)</span>, dengan <span class="math inline">\(\epsilon_{s}\)</span> adalah nilai tolerasnsi yang telah ditentukan. Nilai <span class="math inline">\(\epsilon_{s}\)</span> yang semakin kecil akan memberikan solusi yang semakin teliti, namun dengan iterasi yang semakin tinggi.</p>
+<p><strong>Contoh 2:</strong></p>
+<p>Diketahui prosedur iterasi pada persamaan berikut:</p>
+<p><span class="math display">\[\begin{equation*}
+    x_{r+1}=\frac{-x_{r}^3+3}{6}, r=0,1,2,3,\cdot
+\end{equation*}\]</span></p>
+<p>Misal diberikan <span class="math inline">\(x_{0}=0.5\)</span> dan toleransi <span class="math inline">\(\epsilon_{s} = 0.00001\)</span>, maka diperoleh iterasi sebagai berikut:</p>
+<p><span class="math display">\[\begin{equation*}
+   x_{0}=0.5 \\
+   x_{1}=0.4791667; \left| \epsilon_{RA}=\frac{x_{1}-x_{0}}{x_{1}} \right| = 0.043478 &gt; \epsilon_{s} \\
+   x_{2}=0.4816638; \left| \epsilon_{RA}=\frac{x_{2}-x_{1}}{x_{2}} \right| = 0.0051843 &gt; \epsilon_{s} \\
+   x_{3}=0.4813757; \left| \epsilon_{RA}=\frac{x_{3}-x_{2}}{x_{3}} \right| = 0.0005984 &gt; \epsilon_{s} \\
+   x_{4}=0.4814091; \left| \epsilon_{RA}=\frac{x_{4}-x_{3}}{x_{4}} \right| = 0.0000693 &gt; \epsilon_{s} \\
+   x_{5}=0.4814052; \left| \epsilon_{RA}=\frac{x_{5}-x_{4}}{x_{5}} \right| = 0.0000081 &lt; \epsilon_{s} \\
+\end{equation*}\]</span></p>
+<p>Pada iterasi ke-5, iterasi dihentikan karena <span class="math inline">\(\lvert \epsilon_{RA} \rvert &lt; \epsilon_{s}\)</span> sudah terpenuhi.</p>
 
 </div>
 </div>

@@ -10,3 +10,9 @@ final-words
 penyelesaian-persoalan-matematika
 tab:unnamed-chunk-1
 tahap-penyelesaian-numerik
+eq:binom
+analisis-eror
+eq:erorAbsolut
+eq:erorRelatif1
+eq:erorRelatif2
+eq:erorIterasi
