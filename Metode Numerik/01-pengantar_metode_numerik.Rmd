@@ -1,0 +1,431 @@
+---
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+# Pengantar Metode Numerik {#intro}
+
+Bagian ini akan menjelaskan tentang gambaran umum metode numerik. 
+
+## Penyelesaian Persoalan Matematika 
+ 
+Dalam dunia ilmu pengetahuan, ada banyak persoalan yang dapat dimodelkan secara matematis. Model matematika yang dihasilkan ada yang berupa model sederhana dan terkadang berupa model yang cukup rumit. Secara umum, ada dua metode yang dapat dilakukan untuk menyelesaikan model matematika, yaitu **metode analitik** dan **metode numerik**. 
+
+1. **Metode Analitik**
+
+    Metode analitik biasa digunakan untuk menyelesaikan permasalahan model matematika yang sederhana dengan menggunakan rumus-rumus aljabar yang sudah baku. Misalnya, apabila kita diberikan soal untuk mencari akar-akar polinom berderajad 2 seperti $x^2+3x+3=0$. Untuk mencari akar-akar polinom tersebut, kita dapat menggunakan pendekatan faktorisasi atau dengan rumus *abc*.
+
+2. **Metode Numerik**
+
+    Metode numerik cenderung digunakan untuk membantu dalam penyelesaian model matematika yang rumit yang tidak dapat diselesaikan menggunakan metode analitik. Terkadang model matematika yang rumit masih dapat diselesaikan dengan pendekatan analitik, akan tetapi dengan proses penyelesaian yang rumit dan tidak efisien. Pada metode numerik, teknik penyelesaian dilakukan menggunakan operasi hitungan (tambah, kurang, kali, bagi). Berikut ini merupakan contoh persoalan matematika yang dapat diselesaikan dengan metode numerik:
+
+    a. Mencari akar-akar persamaan polinom: 
+    
+       $23.4x^7-1.25x^6+120x^4+15x^3-120x^2-x+100=0$
+
+    b. Mencari nilai integral tentu dari: 
+        
+       $\int_{1.2}^{2.5} (\sqrt{(45.3e^{7x}+\frac{100}{x})^4}+\frac{4}{(x^2+1)} \,dx$
+
+**Metode Analitik versus Metode Numerik**
+
+| Perbedaan    | Metode Analitik    | Metode Numerik     |
+| :------------- | :----------: | -----------: |
+| Persoalan | Sederhana | Sederhana maupun rumit |
+| Metode Penyelesaian   | Menggunakan rumus aljabar yang sudah baku | Menggunakan operasi hitungan aritmatika biasa (+,-,x,:) |
+| Solusi | Solusi sejati (galat = 0) | Solusi pendekatan (dengan galat) |
+| Hasil akhir | Berupa fungsi | Berupa angka |
+
+
+## Tahap Penyelesaian Numerik
+
+Penyelesaian persoalan dengan pendekatan numerik dapat dilakukan dengan enam tahap berikut:
+
+1. **Pemodelan**
+
+    Tahap pemodelan dilakukan dengan memodelkan permasalahan dari dunia nyata ke dalam persamaan matematika, seperti model linier atau non-linier.
+    
+2. **Penyederhanaan Model**
+
+    Pada tahap ini, dilakukan proses penyederhanaan model dari hasil pemodelan tahap pertama apabila model yang diperoleh masih terlalu rumit, seperti masih terdapat banyak variabel.
+    
+3. **Formulasi Numerik**
+
+    Tahap formulasi numerik diimplementasikan dengan menentukan metode numerik yang akan dipakai secara bersama dengan analisis eror awal (berupa perkiraan eror, penentuan ukuran langkah, dsb.). Setelah itu, baru kemudian disusun algoritme berdasarkan metode numerik yang telah ditentukan.
+    
+4. **Pemrograman**
+
+    Hasil formulasi yang telah didapat kemudian diterjemahkan ke dalam bahasa pemrograman tertentu.
+    
+5. **Operasional**
+
+    Program komputer yang telah dibuat kemudian diujicobakan dengan data stimulasi dan hasilnya dievaluasi. Setelah diperloleh hasil yang telah sesuai, selanjutnya dioperasikan dengan data yang sebenarnya.
+    
+6. **Evaluasi**
+
+    Hasil yang telah diperoleh kemudian diinterpretasikan dengan menganalisis hasil keluaran program dan membandingkannya dengan prinsip dasar untuk memperkirakan kualitas solusi numerik yang dihasilkan.
+    
+## Analisis Galat
+
+Dalam metode numerik, kita hanya mendapatkan solusi persalahan yang mendekati solusi sebenarnya sehingga solusi numerik disebut dengan **solusi pendekatan** atau **solusi hampiran** atau disebut pula dengan *(approximation)*. Solusi hampiran ini tidak persis tepat dengan solusi sebenarnya, sehingga terdapat selisih antara solusi hampiran dengan solusi sebenarnya. Selisih ini disebut dengan **galat** atau **eror**. Semakin kecil nilai eror, maka solusi numerik yang didapatkan akan semakin teliti.
+
+Pengukuran galat dapat dibagi menjadi dua, yaitu *galat absolut* dan *galat relatif*.
+
+1. **Galat Absolut**
+
+    Galat absolut atau eror mutlak merupakan selisih antara nilai sebenarnya $(x)$ dengan nilai perkiraan $(x')$. Galat absolut dapat didefinisikan dalam persamaan \@ref(eq:erorAbsolut):
+
+\begin{equation*} 
+  \epsilon_{A} = \lvert x-x' \rvert
+  (\#eq:erorAbsolut)
+\end{equation*} 
+
+
+2. **Galat Relatif**
+
+    Galat relatif diperoleh dengan membagi selisih nilai sebenarnya $(x)$ dan nilai perkiraan $(x')$ dengan nilai sebenarnya. Persamaan galat relatif dapat didefinisikan sebagai \@ref(eq:erorRelatif1)
+
+    \begin{equation*} 
+      \epsilon_{R} = \left| \frac{x-x'}{x} \right|
+       (\#eq:erorRelatif1)
+    \end{equation*}
+
+    atau dalam persentase,
+
+    \begin{equation*} 
+      \epsilon_{R} = \left| \frac{x-x'}{x} \times 100 \% \right|
+      (\#eq:erorRelatif2)
+    \end{equation*}
+
+    Galat relatif di atas dinormalkan terhadap nilai sebenarnya/nilai sejati, sehingga dapat disebut pula dengan **galat relatif sejati**.
+
+    Dalam praktik di dunia nyata, kita tidak mengetahui nilai sebenarnya $(x)$, oleh karena itu nilai galat $(\epsilon)$ sering dinormalkan terhadap solusi pendekatannya, sehingga galat relatifnya disebut dengan **galat relatif pendekatan**:
+
+    \begin{equation*} 
+      \epsilon_{R} = \left| \frac{\epsilon}{x'} \right|
+      (\#eq:erorRelatif3)
+    \end{equation*}
+
+**Contoh 1:**
+
+Misal diketahui nilai sejati adalah $\frac{10}{3}$ dan nilai pendekatan $3.333$. Hitunglah:
+
+1. Galat
+2. Galat absolut
+3. Galat relatif
+4. Galat relatif pendekatan
+
+**Solusi**
+
+1. Galat = $\frac{10}{3} - 3.333 = \frac{10}{3} - \frac{3333}{1000} = \frac{1}{3000} = 0.000333$
+2. Galat absolut = $\lvert 0.000333 \rvert = 0.000333$
+3. Galat relatif = $\frac{1/3000}{10/3} = \frac{1}{1000} = 0.0001$
+4. Galat relatif pendekatan = $\frac{1/3000}{3.333} = \frac{1}{9999}$
+
+Perhitungan numerik yang menggunakan pendekatan *iterasi*, galat relatif pendekatan dihitung dengan persamaan 
+
+\begin{equation*} 
+  \epsilon_{RA} = \left| \frac{x_{r+1}-x_{r}}{x_{r+1}} \right|
+  (\#eq:erorIterasi)
+\end{equation*}
+
+di mana, $x_{r+1}$ merupakan nilai pendekatan iterasi saat ini dan $x_{r}$ merupakan nilai pendekatan iterasi sebelumnya.
+
+Proses iterasi ini akan dihentikan apabila $\lvert \epsilon_{RA} \rvert < \epsilon_{s}$, dengan $\epsilon_{s}$ adalah nilai toleransi yang telah ditentukan. Nilai $\epsilon_{s}$ yang semakin kecil akan memberikan solusi yang semakin teliti, namun dengan iterasi yang semakin tinggi.
+
+**Contoh 2:**
+
+Diketahui prosedur iterasi pada persamaan berikut:
+
+\begin{equation*}
+    x_{r+1}=\frac{-x_{r}^3+3}{6}, r=0,1,2,3,\ldots
+\end{equation*}
+
+Misal diberikan $x_{0}=0.5$ dan toleransi $\epsilon_{s} = 0.00001$, maka diperoleh iterasi sebagai berikut:
+
+\begin{equation*}
+   x_{0}=0.5 \\
+   x_{1}=0.4791667; \left| \epsilon_{RA}=\frac{x_{1}-x_{0}}{x_{1}} \right| = 0.043478 > \epsilon_{s} \\
+   x_{2}=0.4816638; \left| \epsilon_{RA}=\frac{x_{2}-x_{1}}{x_{2}} \right| = 0.0051843 > \epsilon_{s} \\
+   x_{3}=0.4813757; \left| \epsilon_{RA}=\frac{x_{3}-x_{2}}{x_{3}} \right| = 0.0005984 > \epsilon_{s} \\
+   x_{4}=0.4814091; \left| \epsilon_{RA}=\frac{x_{4}-x_{3}}{x_{4}} \right| = 0.0000693 > \epsilon_{s} \\
+   x_{5}=0.4814052; \left| \epsilon_{RA}=\frac{x_{5}-x_{4}}{x_{5}} \right| = 0.0000081 < \epsilon_{s} \\
+\end{equation*}
+
+Pada iterasi ke-5, iterasi dihentikan karena $\lvert \epsilon_{RA} \rvert < \epsilon_{s}$ sudah terpenuhi.
+
+## Jenis Galat
+
+1. **Galat pemotongan** 
+
+    Galat pemotongan *(truncation error)* terjadi karena adanya pemotongan suatu proses matematika yang tak berhingga. Tipe galat pemotongan bergantung pada metode komputasi yang digunakan untuk pendekatan sehingga disebut juga galat metode.
+Misalnya, diketahui suatu Deret Taylor yang dipotong sampai suku orde ke-n:
+
+    \begin{equation*}
+      f(x) \approx f(x_{0}+ \frac{x-x_{0}}{1!}f'(x_{0}) +\frac{(x-x_{0})^2}{2!}f''(x_{0}) + \ldots +             \frac{x-x_{0}^n}{n!}f^{n}(x_{0}) + R_{n}(x))
+    \end{equation*}
+
+    yang mana $R_{n}(x)$ merupakan galat atau sisa (residu),
+
+    \begin{equation*}
+       R_{n}(x) = \frac{(x-x_{0})^{n+1}}{(n+1)!}f^{n+1}(c) \:\:\:, x_{0}<c<x
+    \end{equation*}
+
+2. **Galat pembulatan**
+
+    Galat pembulatan *(round-off error)* terjadi karena adanya keterbatasan bilangan yang dinyatakan dalam bentuk angka atau digit dalam aplikasi (mesin hitung dan komputer).
+    
+    Contoh: $\frac{1}{3}$ dinyatakan dalam $0,333...3$
+
+3. **Galat total**
+
+    Galat total diperoleh dari jumlah antara galat pemotongan dan galat pembulatan.
+    
+    Contoh: $cos(0,2) \approx 1-\frac{(0,2)^2}{2} + \frac{(0,2)^4}{24} \approx 0,980067$
+
+    Pada contoh, galat pemotongan terjadi karena kita menghampiri $cos(0,2)$ sampai dengan suku orde empat. Adapun galat pembulatan terjadi karena dilakukan pembulatan nilai hampiran ke dalam 7 digit bena.
+
+
+## Angka Bena
+
+**Angka bena** dapat didefinisikan sebagai angka penting dan memiliki makna yang dapat digunakan secara pasti.
+
+**Contoh:**
+
+$43,123$ memiliki 5 angka bena (4,3,1,2,3)
+
+$0,1764$ memiliki 4 angka bena (1,7,6,4)
+
+$0,0000012$ memiliki 2 angka bena (1,2)
+
+$278,300$ memiliki 6 angka bena (2,7,8,3,00)
+
+$270,0090$ memiliki 7 angka bena (2,7,0,0,0,9,0)
+
+$0,0090$ memiliki 2 angka bena (9 dan 0)
+
+$1360; 1,360; 0,001360$ masing-masing memiliki 4 angka bena
+
+Jumlah angka bena dapat ditentukan berdasarkan pada jumlah digit *mantis*-nya.
+
+**Contoh:**
+
+$4,3123 \times 10^1$ memiliki 5 angka bena
+
+$1,764 \times 10^{-1}$ memiliki 4 angka bena
+
+$1,2 \times 10^{-6}$ memiliki 2 angka bena
+
+$2,78300 \times 10^2$ memiliki 6 angka bena
+
+$0,2700090 \times 10^3$ memiliki 7 angka bena
+
+$9,0 \times 10^3$ memiliki 2 angka bena
+
+$13,60 \times 10^2$; $0,1360 \times 10^1$; $1,360 \times 10^3$ memiliki 4 angka bena
+
+$6,02 \times 10^{23}$ memiliki 24 angka bena
+
+$1,5 \times 10^7$ memiliki 8 angka bena
+
+## Bilangan dalam Komputasi Numerik
+
+Dalam komputasi numerik, kita dapat membagi bilangan menjadi:
+
+1. Bilangan bulat (integer)
+2. Bilangan pecahan (riil):
+    a. Bilangan titik tetap (fixed point)
+    b. Bilangan titik kambang (floating point)
+
+Di sini kita akan memfokuskan pada pembahasan mengenai cara penyajian untuk bilangan riil.
+
+1. **Bilangan titik tetap**
+    
+    Pada bilangan titik tetap, setiap bilangan akan disajikan dengan jumlah tempat desimal yang *tetap*.
+    
+    Contoh: 
+    
+    \begin{equation*}
+    62,358 \\
+    
+    0,013 \\
+     
+    1,000
+    \end{equation*}
+
+2. **Bilangan titik kambang**
+
+    Secara umum, komputer menyimpan bilangan riil dengan format yang berbeda-beda yang disesuaikan dengan perangkat keras dan *compiler* bahasa pemrogramman yang digunakan. Bilangan riil dalam komputer biasa disajikan dalam format bilangan titik kambang. Bilangan titik kambang disajikan dengan cacah digit *berarti* yang sudah tetap. Digit *berarti* di sini merupakan angka bena yang sudah dijelaskan pada subbab sebelumnya.
+    
+    Contoh:
+    
+    \begin{equation*}
+    0,6238 \times 10^3 \: \text{atau} \: 0,6238E+03\\
+    
+    0,1714 \times 10^{-13} \: \text{atau} \:0,1714E-13\\
+    \end{equation*}
+    
+    Penyajian bilangan titik kambang $a$ umumnya dituliskan sebagai berikut,
+    
+    \begin{equation*}
+    a = \pm m \times B^p = \pm 0.d_{1}d_{2}d_{3} \ldots d_{n} \times B^p
+    (\#eq:biltitikkambang)
+    \end{equation*}
+    
+    Keterangan:
+    
+    $m$ = mantisa, dengan $d_{1}d_{2}d_{3} \ldots d_{n}$ merupakan bit mantisa
+    
+    $B$ = basis sistem bilangan yang digunakan (basis 2, basis 8, basis 10, dst)
+    
+    $P$ = pangkat yang berupa bilangan bulat dengan nilai $-P_{min}$ hingga $P_{maks}$
+    
+    
+### Bilangan titik kambang ternormalisasi
+    
+Penulisan bilangan titik kambang \@ref(eq:biltitikkambang) tidak bersifat unik disebabkan adanya beberapa model penyajian, yang mana dapat pula kita sajikan dalam bentuk,
+    
+\begin{equation*}
+a = \pm (mb) \times B^{p-1}
+(\#eq:biltitikkambang2)
+\end{equation*}
+    
+Sebagai contoh, kita dapat menuliskan bilangan 341,9761 dengan beberapa cara berikut,
+
+\begin{equation*}
+  0,3419761 \times 10^3 \: \: \text{atau} \\
+  
+  \: \: 3,419761 \times 10^2 \: \: \text{atau} \\
+  
+  \: \: 0,03419761 \times 10^4 , \text{dan sebagainya}
+\end{equation*}
+
+Untuk menyeragamkan penyajian bilangan titik kambang, maka dilakukan normalisasi format titik kambang agar semua digit mantisa berupa angka bena. Oleh karena itu, bilangan titik kambang ternomalisasi harus memenuhi syarat bahwa digit mantisa yang pertama $(d_{1})$ *tidak boleh* nol. Sehingga, penyajian bilangan titik kambang yang ternormalisasi adalah,
+
+\begin{equation*}
+a = \pm m \times B^p = \pm 0.d_{1}d_{2}d_{3} \ldots d_{n} \times B^p
+(\#eq:biltitikkambang3)
+\end{equation*}
+
+dengan ketentuan $1 \leq d_{1} \leq b-1$ dan $0 \leq d_{k} \leq B-1$ untuk $k > 1$.
+
+* Pada sistem desimal,
+
+   $1 \leq d_{1} \leq 9$ dan $0 \leq d_{k} \leq 9$
+
+* Pada sistem biner
+    
+   $d_{1}=1$ dan $0 \leq d_{k} \leq 9$
+   
+
+
+Contoh:
+
+1. $0,0987 \times 10^{-3}$ dinormalisasikan menjadi $0,987 \times 10^{-4}$
+2. $0,00065430 \times 10^{6}$ dinormalisasikan menjadi $0,65430 \times 10^{3}$
+
+    
+### Pembulatan bilangan titik kambang
+    
+Teknik pembulatan yang biasa digunakan oleh komputer pada titik kambang yaitu:
+
+1. **Pemenggalan *(chopping)* **
+
+    Misalkan kita memiliki suatu bilangan riil positif sebagai berikut,
+    
+    $a = \pm 0.d_{1}d_{2}d_{3} \ldots d_{n}d_{n+1} \times 10^p$
+    
+    Metode pemenggalan ini dilakukan dengan memotong digit $d_{n}d_{n+1} \ldots$ untuk menghasilkan bilangan titik kambang, 
+    
+    $fl_{chop}(a) = \pm 0..d_{1}d_{2}d_{3} \ldots d_{n-1}d_{n} \times 10^p$
+    
+    Contoh:
+    
+    $\pi = 0,314159265 \ldots \times 10^1$ akan disimpan di dalam komputer dengan 5 digit *chopping* menjadi, 
+    
+    $fl_{chop}(\pi) = 0,31415 \times 10^1 = 3.1415$
+
+2. **Pembulatan ke digit terdekat *(in-rounding)* **
+    
+    Misalkan kita memiliki suatu bilangan riil positif sebagai berikut,
+    
+    $a = \pm 0.d_{1}d_{2}d_{3} \ldots d_{n}d_{n+1} \times 10^p$
+    
+    maka bilangan $a$ dapat dibulatkan sampai $n$ digit,
+    
+    $fl_{round}(a) = \pm 0.d_{1}d_{2}d_{3} \ldots d_{n} \times 10^p$
+    
+    dengan mengikuti kententuan berikut,
+    
+    a. Jika $d_{n-1} < 5$ maka $d_n$
+    b. Jika $d_{n-1} > 5$ maka $d_{n+1}$
+    c. Jika $d_{n-1} = 5$ dan $n$ bilangan genap maka $d_{n}$
+    d. Jika $d_{n-1} < 5$ dan $n$ bilangan ganjil maka $d_{n+1}$
+    
+<!-- ### Biner -->
+<!-- Komputer merepresentasikan suatu bilangan riil ke dalam sebuah representasi biner 64-digit. Berikut ini merupakan ilustrasi dari representasi biner 64-digit. -->
+
+<!-- \begin{equation*} -->
+<!--     \color{orange}{0}\; \color{blue}{10000000011}\; \color{red}{1011100100010000000000000000000000000000000000000000} -->
+<!-- \end{equation*} -->
+
+<!-- Representasi biner di atas dapat diformulasikan sebagai berikut, -->
+
+<!-- \begin{equation*} -->
+<!--     (-1)^{\color{orange}{s}} 2^{\color{blue}{c}-1023}(1+\color{red}{f}) -->
+<!-- \end{equation*} -->
+
+<!-- Dengan $\color{orange}s$ merupakan <span style="color:orange">bit pertama</span> yang mengindikasikan tanda, $\color{blue}c$ adalah <span style="color:blue">11-bit</span> yang disebut dengan karakteristik, dan $\color{red}f$ adalah <span style="color:red">52-bit</span> pecahan biner yang disebut dengan *mantissa*. -->
+
+<!-- **Contoh:** -->
+
+<!-- Diketahui representasi biner berikut, -->
+<!-- \begin{equation*} -->
+<!--     \color{orange}{0}\; \color{blue}{10000000011}\; \color{red}{1011100100010000000000000000000000000000000000000000} -->
+<!-- \end{equation*} -->
+
+<!-- Berdasarkan representasi tersebut, kita memiliki $\color{orange}{s=0}$ yang mengindikasikan bilangan positif. Adapun 11 bit selanjutnya $(\color{blue}{10000000011})$ mengindikasikan karakteristik, -->
+
+<!-- \begin{equation*} -->
+<!--     c=1\ldots 2^{10} + 0\ldots 2^9 + \dotsc + 0 \ldots 2^2 + 1\ldots 2^1 + 1 \ldots 2^0=1024+2+1=1027, -->
+<!-- \end{equation*} -->
+
+<!-- sehingga, $2^{1027-1023}=2^4$ -->
+
+<!-- Selanjutnya, 52 bits terakhir merupakan mantissa. -->
+
+<!-- \begin{equation*} -->
+<!--     f=1\ldots \left(\frac{1}{2}\right)^1 + 1\ldots \left(\frac{1}{2}\right)^3 + 1\ldots \left(\frac{1}{2}\right)^4 + 1\ldots \left(\frac{1}{2}\right)^5 + 1\ldots \left(\frac{1}{2}\right)^8 + -->
+<!--     1\ldots \left(\frac{1}{2}\right)^{12}. -->
+<!-- \end{equation*} -->
+
+<!-- Sehingga, -->
+
+<!-- \begin{align*} -->
+<!--     (-1)^s 2^{c-1023}(1+f)&=(-1)^0 2^{1027-1023}\left(1+\left( \frac{1}{2} + \frac{1}{8} + \frac{1}{16} + \frac{1}{32} + \frac{1}{256} + \frac{1}{4096}\right)\right) \\ -->
+<!--     &=27.56640625. -->
+<!-- \end{align*} -->
+
+<!-- Namun demikian, angka setelahnya yang paling kecil direpresentasikan sebagai berikut, -->
+<!-- \begin{equation*} -->
+<!--     0\; 10000000011\; 1011100100001111111111111111111111111111111111111111, -->
+<!-- \end{equation*} -->
+
+<!-- dan angka setelahnya yang paling besar adalah, -->
+<!-- \begin{equation*} -->
+<!--     0\; 10000000011\; 1011100100010000000000000000000000000000000000000001. -->
+<!-- \end{equation*} -->
+
+<!-- Hal tersebut berarti bahwa, -->
+
+<!-- ### Desimal -->
+
+
+
+
+## Referensi
+
+1. Munir, R. (2013). **Metode Numerik Revisi ketiga**. Informatika.
+2. Burden, Richard L and Faires, J. Douglas. (2010). **Numerical Analysis Ninth Edition**. Brooks/Cole, Cengage Learning.
+3. Scott, L. Ridgway. (2016). **Numerical Analysys Second Edition**. Princeton University Press.
