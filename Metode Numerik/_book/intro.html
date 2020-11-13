@@ -79,9 +79,10 @@
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#analisis-galat"><i class="fa fa-check"></i><b>1.3</b> Analisis Galat</a></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#jenis-galat"><i class="fa fa-check"></i><b>1.4</b> Jenis Galat</a></li>
 <li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#angka-bena"><i class="fa fa-check"></i><b>1.5</b> Angka Bena</a></li>
-<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#bilangan-dalam-komputasi-numerik"><i class="fa fa-check"></i><b>1.6</b> Bilangan dalam Komputasi Numerik</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#bilangan-titik-kambang-ternormalisasi"><i class="fa fa-check"></i><b>1.6.1</b> Bilangan titik kambang ternormalisasi</a></li>
-<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#pembulatan-bilangan-titik-kambang"><i class="fa fa-check"></i><b>1.6.2</b> Pembulatan bilangan titik kambang</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#sistem-bilangan"><i class="fa fa-check"></i><b>1.6</b> Sistem Bilangan</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#biner"><i class="fa fa-check"></i><b>1.6.1</b> Biner</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#desimal"><i class="fa fa-check"></i><b>1.6.2</b> Desimal</a></li>
+<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#aritmetika-bilangan-titik-kambang"><i class="fa fa-check"></i><b>1.6.3</b> Aritmetika bilangan titik kambang</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#referensi"><i class="fa fa-check"></i><b>1.7</b> Referensi</a></li>
 </ul></li>
@@ -293,145 +294,159 @@ Misalnya, diketahui suatu Deret Taylor yang dipotong sampai suku orde ke-n:</p>
 <p><span class="math inline">\(6,02 \times 10^{23}\)</span> memiliki 24 angka bena</p>
 <p><span class="math inline">\(1,5 \times 10^7\)</span> memiliki 8 angka bena</p>
 </div>
-<div id="bilangan-dalam-komputasi-numerik" class="section level2">
-<h2><span class="header-section-number">1.6</span> Bilangan dalam Komputasi Numerik</h2>
-<p>Dalam komputasi numerik, kita dapat membagi bilangan menjadi:</p>
-<ol style="list-style-type: decimal">
-<li>Bilangan bulat (integer)</li>
-<li>Bilangan pecahan (riil):
-<ol style="list-style-type: lower-alpha">
-<li>Bilangan titik tetap (fixed point)</li>
-<li>Bilangan titik kambang (floating point)</li>
-</ol></li>
-</ol>
-<p>Di sini kita akan memfokuskan pada pembahasan mengenai cara penyajian untuk bilangan riil.</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Bilangan titik tetap</strong></p>
-<p>Pada bilangan titik tetap, setiap bilangan akan disajikan dengan jumlah tempat desimal yang <em>tetap</em>.</p>
-<p>Contoh:</p>
+<div id="sistem-bilangan" class="section level2">
+<h2><span class="header-section-number">1.6</span> Sistem Bilangan</h2>
+<div id="biner" class="section level3">
+<h3><span class="header-section-number">1.6.1</span> Biner</h3>
+<p>Komputer merepresentasikan suatu bilangan riil ke dalam sebuah representasi biner 64-digit. Berikut ini merupakan ilustrasi dari representasi biner 64-digit.</p>
 <p><span class="math display">\[\begin{equation*}
- 62,358 \\
-
- 0,013 \\
-
- 1,000
- \end{equation*}\]</span></p></li>
-<li><p><strong>Bilangan titik kambang</strong></p>
-<p>Secara umum, komputer menyimpan bilangan riil dengan format yang berbeda-beda yang disesuaikan dengan perangkat keras dan <em>compiler</em> bahasa pemrogramman yang digunakan. Bilangan riil dalam komputer biasa disajikan dalam format bilangan titik kambang. Bilangan titik kambang disajikan dengan cacah digit <em>berarti</em> yang sudah tetap. Digit <em>berarti</em> di sini merupakan angka bena yang sudah dijelaskan pada subbab sebelumnya.</p>
-<p>Contoh:</p>
+    \color{orange}{0}\; \color{blue}{10000000011}\; \color{red}{1011100100010000000000000000000000000000000000000000}
+\end{equation*}\]</span></p>
+<p>Representasi biner di atas dapat diformulasikan sebagai berikut,</p>
 <p><span class="math display">\[\begin{equation*}
- 0,6238 \times 10^3 \: \text{atau} \: 0,6238E+03\\
-
- 0,1714 \times 10^{-13} \: \text{atau} \:0,1714E-13\\
- \end{equation*}\]</span></p>
-<p>Penyajian bilangan titik kambang <span class="math inline">\(a\)</span> umumnya dituliskan sebagai berikut,</p>
-<p><span class="math display" id="eq:biltitikkambang">\[\begin{equation*}
- a = \pm m \times B^p = \pm 0.d_{1}d_{2}d_{3} \ldots d_{n} \times B^p
- \tag{1.6}
- \end{equation*}\]</span></p>
-<p>Keterangan:</p>
-<p><span class="math inline">\(m\)</span> = mantisa, dengan <span class="math inline">\(d_{1}d_{2}d_{3} \ldots d_{n}\)</span> merupakan bit mantisa</p>
-<p><span class="math inline">\(B\)</span> = basis sistem bilangan yang digunakan (basis 2, basis 8, basis 10, dst)</p>
-<p><span class="math inline">\(P\)</span> = pangkat yang berupa bilangan bulat dengan nilai <span class="math inline">\(-P_{min}\)</span> hingga <span class="math inline">\(P_{maks}\)</span></p></li>
-</ol>
-<div id="bilangan-titik-kambang-ternormalisasi" class="section level3">
-<h3><span class="header-section-number">1.6.1</span> Bilangan titik kambang ternormalisasi</h3>
-<p>Penulisan bilangan titik kambang <a href="intro.html#eq:biltitikkambang">(1.6)</a> tidak bersifat unik disebabkan adanya beberapa model penyajian, yang mana dapat pula kita sajikan dalam bentuk,</p>
-<p><span class="math display" id="eq:biltitikkambang2">\[\begin{equation*}
-a = \pm (mb) \times B^{p-1}
-\tag{1.7}
+    (-1)^{\color{orange}{s}} 2^{\color{blue}{c}-1023}(1+\color{red}{f})
 \end{equation*}\]</span></p>
-<p>Sebagai contoh, kita dapat menuliskan bilangan 341,9761 dengan beberapa cara berikut,</p>
+<p>Dengan <span class="math inline">\(\color{orange}s\)</span> merupakan <span style="color:orange">bit pertama</span> yang mengindikasikan tanda, <span class="math inline">\(\color{blue}c\)</span> adalah <span style="color:blue">11-bit</span> yang disebut dengan karakteristik, dan <span class="math inline">\(\color{red}f\)</span> adalah <span style="color:red">52-bit</span> pecahan biner yang disebut dengan <em>mantissa</em>.</p>
+<p><strong>Contoh:</strong></p>
+<p>Diketahui representasi biner berikut,
+<span class="math display">\[\begin{equation*}
+    \color{orange}{0}\; \color{blue}{10000000011}\; \color{red}{1011100100010000000000000000000000000000000000000000}
+\end{equation*}\]</span></p>
+<p>Berdasarkan representasi tersebut, kita memiliki <span class="math inline">\(\color{orange}{s=0}\)</span> yang mengindikasikan bilangan positif. Adapun 11 bit selanjutnya <span class="math inline">\((\color{blue}{10000000011})\)</span> mengindikasikan karakteristik,</p>
 <p><span class="math display">\[\begin{equation*}
-  0,3419761 \times 10^3 \: \: \text{atau} \\
-  
-  \: \: 3,419761 \times 10^2 \: \: \text{atau} \\
-  
-  \: \: 0,03419761 \times 10^4 , \text{dan sebagainya}
+    c=1\cdot 2^{10} + 0\cdot 2^9 + \dotsc + 0 \cdot 2^2 + 1\cdot 2^1 + 1 \cdot 2^0=1024+2+1=1027,
 \end{equation*}\]</span></p>
-<p>Untuk menyeragamkan penyajian bilangan titik kambang, maka dilakukan normalisasi format titik kambang agar semua digit mantisa berupa angka bena. Oleh karena itu, bilangan titik kambang ternomalisasi harus memenuhi syarat bahwa digit mantisa yang pertama <span class="math inline">\((d_{1})\)</span> <em>tidak boleh</em> nol. Sehingga, penyajian bilangan titik kambang yang ternormalisasi adalah,</p>
-<p><span class="math display" id="eq:biltitikkambang3">\[\begin{equation*}
-a = \pm m \times B^p = \pm 0.d_{1}d_{2}d_{3} \ldots d_{n} \times B^p
-\tag{1.8}
+<p>sehingga, <span class="math inline">\(2^{1027-1023}=2^4\)</span></p>
+<p>Selanjutnya, 52 bits terakhir merupakan mantisa.</p>
+<p><span class="math display">\[\begin{equation*}
+    f=1\ldots \left(\frac{1}{2}\right)^1 + 1\ldots \left(\frac{1}{2}\right)^3 + 1\ldots \left(\frac{1}{2}\right)^4 + 1\ldots \left(\frac{1}{2}\right)^5 + 1\ldots \left(\frac{1}{2}\right)^8 +
+    1\ldots \left(\frac{1}{2}\right)^{12}.
 \end{equation*}\]</span></p>
-<p>dengan ketentuan <span class="math inline">\(1 \leq d_{1} \leq b-1\)</span> dan <span class="math inline">\(0 \leq d_{k} \leq B-1\)</span> untuk <span class="math inline">\(k &gt; 1\)</span>.</p>
-<ul>
-<li><p>Pada sistem desimal,</p>
-<p><span class="math inline">\(1 \leq d_{1} \leq 9\)</span> dan <span class="math inline">\(0 \leq d_{k} \leq 9\)</span></p></li>
-<li><p>Pada sistem biner</p>
-<p><span class="math inline">\(d_{1}=1\)</span> dan <span class="math inline">\(0 \leq d_{k} \leq 9\)</span></p></li>
-</ul>
-<p>Contoh:</p>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(0,0987 \times 10^{-3}\)</span> dinormalisasikan menjadi <span class="math inline">\(0,987 \times 10^{-4}\)</span></li>
-<li><span class="math inline">\(0,00065430 \times 10^{6}\)</span> dinormalisasikan menjadi <span class="math inline">\(0,65430 \times 10^{3}\)</span></li>
-</ol>
+<p>Sehingga,</p>
+<p><span class="math display">\[\begin{align*}
+    (-1)^s 2^{c-1023}(1+f)&amp;=(-1)^0 2^{1027-1023}\left(1+\left( \frac{1}{2} + \frac{1}{8} + \frac{1}{16} + \frac{1}{32} + \frac{1}{256} + \frac{1}{4096}\right)\right) \\
+    &amp;=27.56640625.
+\end{align*}\]</span></p>
+<p>Namun demikian, angka mesin setelahnya yang paling kecil direpresentasikan sebagai berikut,
+<span class="math display">\[\begin{equation*}
+    0\; 10000000011\; 1011100100001111111111111111111111111111111111111111,
+\end{equation*}\]</span></p>
+<p>dan angka mesin setelahnya yang paling besar adalah,
+<span class="math display">\[\begin{equation*}
+    0\; 10000000011\; 1011100100010000000000000000000000000000000000000001.
+\end{equation*}\]</span></p>
+<p>Hal tersebut berarti bahwa, angka mesin pertama yang kita dapatkan tidak hanya merepresentasikan <span class="math inline">\(27,56640625\)</span>, namun juga setengah dari bilangan riil di antara <span class="math inline">\(27,56640625\)</span> dan angka mesin berikutnya yang terkecil, serta setengah dari angka di antara <span class="math inline">\(27,56640625\)</span> dan angka mesin berikutnya yang terbesar. Dengan kata lain, hal ini merepresentasikan bilangan riil apapun di dalam interval berikut,</p>
+<p><span class="math inline">\([27.5664062499999982236431605997495353221893310546875,\\ 27.5664062500000017763568394002504646778106689453125]\)</span></p>
+<p>Dalam hal ini, kita ketahui bahwa mesin tidak dapat secara tepat merepresentasikan bilangan riil yang sebenarnya.</p>
+<p>Bilangan positif paling kecil yang dinormalisasi yang dapat direpresentasikan memiliki <span class="math inline">\(s=0, \: c=1, \: \text{dan} \: f=0\)</span> yang ekuivalen dengan,</p>
+<p><span class="math display">\[\begin{equation*}
+        2^{-1022}\cdot (1+0) \approx 0.22251 \times 10^{-307}. 
+    \end{equation*}\]</span></p>
+<p>dengan demikian, angka berapapun yang kurang dari,</p>
+<p><span class="math display">\[\begin{equation*}
+  2^{-1022}\cdot(1+0)
+\end{equation*}\]</span></p>
+<p>akan menghasilkan keadaan <em>underflow</em> dan biasanya dinyatakan menjadi 0.</p>
+<p>dan bilangan positif ternormalisasi terbesar memiliki <span class="math inline">\(s=0, \: c=2046, \: \text{dan} \: f=1-2^{-52}\)</span> yang ekuivalen dengan,</p>
+<p><span class="math display">\[\begin{equation*}
+        2^{1023}\cdot (2-2^{-52}) \approx 0.17977 \times 10^{309}. 
+    \end{equation*}\]</span></p>
+<p>sehingga, angka berapapun yang lebih besar dari,</p>
+<p><span class="math display">\[\begin{equation*}
+        2^{1023}\cdot (2-2^{-52})
+    \end{equation*}\]</span></p>
+<p>akan menghasilkan keadaan <em>overflow</em> dan mengakibatkan proses perhitungan terhenti.</p>
 </div>
-<div id="pembulatan-bilangan-titik-kambang" class="section level3">
-<h3><span class="header-section-number">1.6.2</span> Pembulatan bilangan titik kambang</h3>
-<p>Teknik pembulatan yang biasa digunakan oleh komputer pada titik kambang yaitu:</p>
+<div id="desimal" class="section level3">
+<h3><span class="header-section-number">1.6.2</span> Desimal</h3>
+<p>Bilangan riil dalam komputer biasa disajikan dalam format bilangan titik kambang. Bilangan titik kambang disajikan dengan cacah digit <em>berarti</em> yang sudah tetap. Digit <em>berarti</em> di sini merupakan angka bena yang sudah dijelaskan pada subbab sebelumnya.</p>
+<p>Di sini, kita asumsikan bahwa bilangan dalam komputer disajikan dalam bilangan titik kambang ternomalisasi berikut,</p>
+<p><span class="math display">\[\begin{equation*}
+        \pm0.d_1d_2\dotsc d_k\times 10^n, \;\;\; 1\leq d_1\leq 9, \;\;\;\text{and}\;\;\; 0\leq d_i \leq 9.
+    \end{equation*}\]</span></p>
+<p>dengan <span class="math inline">\(d_{1}d_{2}d_{3} \ldots d_{k}\)</span> merupakan bit mantisa.</p>
+<p>Setiap bilangan real positif dalam interval yang diberikan oleh mesin dapat dinormalisasi menjadi,</p>
+<p><span class="math display">\[\begin{equation*}
+    y = 0.d_1d_2 \dotsc d_k d_{k+1} d_{k+2} \dotsc \times 10^n.
+\end{equation*}\]</span></p>
+<p>Bentuk bilangan titik kambang <span class="math inline">\(y\)</span>, dinotasikan sebagai <span class="math inline">\(fl(y)\)</span>, diperoleh dengan mengakhiri mantisa <span class="math inline">\(y\)</span> pada digit desimal <span class="math inline">\(k\)</span>. Secara umum, ada dua teknik yang biasa digunakan, yaitu <strong>pemenggalan <em>(chopping)</em> </strong> dan <strong>pembulatan <em>(rounding)</em> </strong>.</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Pemenggalan <em>(chopping)</em> </strong></p>
-<p>Misalkan kita memiliki suatu bilangan riil positif sebagai berikut,</p>
-<p><span class="math inline">\(a = \pm 0.d_{1}d_{2}d_{3} \ldots d_{n}d_{n+1} \times 10^p\)</span></p>
-<p>Metode pemenggalan ini dilakukan dengan memotong digit <span class="math inline">\(d_{n}d_{n+1} \ldots\)</span> untuk menghasilkan bilangan titik kambang,</p>
-<p><span class="math inline">\(fl_{chop}(a) = \pm 0..d_{1}d_{2}d_{3} \ldots d_{n-1}d_{n} \times 10^p\)</span></p>
-<p>Contoh:</p>
-<p><span class="math inline">\(\pi = 0,314159265 \ldots \times 10^1\)</span> akan disimpan di dalam komputer dengan 5 digit <em>chopping</em> menjadi,</p>
-<p><span class="math inline">\(fl_{chop}(\pi) = 0,31415 \times 10^1 = 3.1415\)</span></p></li>
-<li><p><strong>Pembulatan ke digit terdekat <em>(in-rounding)</em> </strong></p>
-<p>Misalkan kita memiliki suatu bilangan riil positif sebagai berikut,</p>
-<p><span class="math inline">\(a = \pm 0.d_{1}d_{2}d_{3} \ldots d_{n}d_{n+1} \times 10^p\)</span></p>
-<p>maka bilangan <span class="math inline">\(a\)</span> dapat dibulatkan sampai <span class="math inline">\(n\)</span> digit,</p>
-<p><span class="math inline">\(fl_{round}(a) = \pm 0.d_{1}d_{2}d_{3} \ldots d_{n} \times 10^p\)</span></p>
-<p>dengan mengikuti kententuan berikut,</p>
-<ol style="list-style-type: lower-alpha">
-<li>Jika <span class="math inline">\(d_{n-1} &lt; 5\)</span> maka <span class="math inline">\(d_n\)</span></li>
-<li>Jika <span class="math inline">\(d_{n-1} &gt; 5\)</span> maka <span class="math inline">\(d_{n+1}\)</span></li>
-<li>Jika <span class="math inline">\(d_{n-1} = 5\)</span> dan <span class="math inline">\(n\)</span> bilangan genap maka <span class="math inline">\(d_{n}\)</span></li>
-<li>Jika <span class="math inline">\(d_{n-1} &lt; 5\)</span> dan <span class="math inline">\(n\)</span> bilangan ganjil maka <span class="math inline">\(d_{n+1}\)</span></li>
-</ol></li>
+<li><p><em>Pemenggalan</em></p>
+<p>Pemenggalan dilakukan dengan memenggal digit <span class="math inline">\(d_{k+1}d_{k+2}\)</span>, sehingga menghasilkan,</p>
+<p><span class="math display">\[\begin{equation*}
+     fl(y)=0.d_1d_2\dotsc d_k\times 10^n.
+ \end{equation*}\]</span></p></li>
+<li><p><em>Pembulatan</em></p>
+<p>Pembulatan dilakukan dengan menambahkan <span class="math inline">\(5 \times 10^{n-(k+1)}\)</span> terhadap <span class="math inline">\(y\)</span> kemudian selanjutnya dilakukan pemotongan untuk menghasilkan,</p>
+<p><span class="math display">\[\begin{equation*}
+     fl(y)=0.\delta_1\delta_2\dotsc\delta_k \times 10^n.
+ \end{equation*}\]</span></p>
+<p>Dalam pembulatan, ada beberapa ketentuan, di antaranya:</p>
+<ul>
+<li>jika <span class="math inline">\(d_{k+1} \geq 5\)</span>, tambahkan 1 terhadap <span class="math inline">\(d_{k}\)</span> <em>(pembulatan ke atas/round up)</em></li>
+<li>jika <span class="math inline">\(d_{k+1} \leq 5\)</span>, lakukan pemotongan terhadap seluruh digit kecuali <span class="math inline">\(k\)</span> digit pertama <em>(pembulatan ke bawah/round down dan <span class="math inline">\(\delta_i=d\)</span>)</em></li>
+</ul></li>
 </ol>
-<!-- ### Biner -->
-<!-- Komputer merepresentasikan suatu bilangan riil ke dalam sebuah representasi biner 64-digit. Berikut ini merupakan ilustrasi dari representasi biner 64-digit. -->
-<!-- \begin{equation*} -->
-<!--     \color{orange}{0}\; \color{blue}{10000000011}\; \color{red}{1011100100010000000000000000000000000000000000000000} -->
-<!-- \end{equation*} -->
-<!-- Representasi biner di atas dapat diformulasikan sebagai berikut, -->
-<!-- \begin{equation*} -->
-<!--     (-1)^{\color{orange}{s}} 2^{\color{blue}{c}-1023}(1+\color{red}{f}) -->
-<!-- \end{equation*} -->
-<!-- Dengan $\color{orange}s$ merupakan <span style="color:orange">bit pertama</span> yang mengindikasikan tanda, $\color{blue}c$ adalah <span style="color:blue">11-bit</span> yang disebut dengan karakteristik, dan $\color{red}f$ adalah <span style="color:red">52-bit</span> pecahan biner yang disebut dengan *mantissa*. -->
-<!-- **Contoh:** -->
-<!-- Diketahui representasi biner berikut, -->
-<!-- \begin{equation*} -->
-<!--     \color{orange}{0}\; \color{blue}{10000000011}\; \color{red}{1011100100010000000000000000000000000000000000000000} -->
-<!-- \end{equation*} -->
-<!-- Berdasarkan representasi tersebut, kita memiliki $\color{orange}{s=0}$ yang mengindikasikan bilangan positif. Adapun 11 bit selanjutnya $(\color{blue}{10000000011})$ mengindikasikan karakteristik, -->
-<!-- \begin{equation*} -->
-<!--     c=1\ldots 2^{10} + 0\ldots 2^9 + \dotsc + 0 \ldots 2^2 + 1\ldots 2^1 + 1 \ldots 2^0=1024+2+1=1027, -->
-<!-- \end{equation*} -->
-<!-- sehingga, $2^{1027-1023}=2^4$ -->
-<!-- Selanjutnya, 52 bits terakhir merupakan mantissa. -->
-<!-- \begin{equation*} -->
-<!--     f=1\ldots \left(\frac{1}{2}\right)^1 + 1\ldots \left(\frac{1}{2}\right)^3 + 1\ldots \left(\frac{1}{2}\right)^4 + 1\ldots \left(\frac{1}{2}\right)^5 + 1\ldots \left(\frac{1}{2}\right)^8 + -->
-<!--     1\ldots \left(\frac{1}{2}\right)^{12}. -->
-<!-- \end{equation*} -->
-<!-- Sehingga, -->
-<!-- \begin{align*} -->
-<!--     (-1)^s 2^{c-1023}(1+f)&=(-1)^0 2^{1027-1023}\left(1+\left( \frac{1}{2} + \frac{1}{8} + \frac{1}{16} + \frac{1}{32} + \frac{1}{256} + \frac{1}{4096}\right)\right) \\ -->
-<!--     &=27.56640625. -->
-<!-- \end{align*} -->
-<!-- Namun demikian, angka setelahnya yang paling kecil direpresentasikan sebagai berikut, -->
-<!-- \begin{equation*} -->
-<!--     0\; 10000000011\; 1011100100001111111111111111111111111111111111111111, -->
-<!-- \end{equation*} -->
-<!-- dan angka setelahnya yang paling besar adalah, -->
-<!-- \begin{equation*} -->
-<!--     0\; 10000000011\; 1011100100010000000000000000000000000000000000000001. -->
-<!-- \end{equation*} -->
-<!-- Hal tersebut berarti bahwa, -->
-<!-- ### Desimal -->
+<p><strong>Contoh</strong></p>
+<p>Bilangan <span class="math inline">\(\pi\)</span> memiliki bentuk ekspansi desimal tak hingga sebagai berikut,</p>
+<p><span class="math inline">\(\pi = 3,14159265 \ldots\)</span></p>
+<p>yang mana dapat dituliskan ke dalam bentuk ternormalisasi</p>
+<p><span class="math inline">\(\pi = 0,314159265 \ldots \times 10^1\)</span></p>
+<p>Bentuk bilangan titik kambang <span class="math inline">\(\pi\)</span> dengan pemenggalan 5 digit adalah</p>
+<p><span class="math display">\[\begin{equation*}
+    fl(\pi)=0.31415 \times 10^1 = 3.1415.
+\end{equation*}\]</span></p>
+<p>Sedangkan Bentuk bilangan titik kambang <span class="math inline">\(\pi\)</span> dengan pembulatan 5 digit adalah <em>(perhatikan bahwa digit keenam dari ekspansi desimal <span class="math inline">\(\pi\)</span> adalah 9)</em></p>
+<p><span class="math display">\[\begin{equation*}
+    fl(\pi)=(0.31415 + 0.00001) \times 10^1 = 3.1416.
+\end{equation*}\]</span></p>
+</div>
+<div id="aritmetika-bilangan-titik-kambang" class="section level3">
+<h3><span class="header-section-number">1.6.3</span> Aritmetika bilangan titik kambang</h3>
+<p><strong>1. Penjumlahan</strong></p>
+<p><em>Contoh:</em></p>
+<p>Hitunglah <span class="math inline">\(x+y\)</span> jika diketahui <span class="math inline">\(x = 1,557\)</span> dan <span class="math inline">\(y=0,04381\)</span> dengan mantisa 4 digit (basis 10)!</p>
+<p><em>Solusi:</em></p>
+<p><span class="math display">\[\begin{align*}
+  0,1557 \times 10^1 + 0.4381 \times 10^{-1} &amp;= 0,1557 \times 10^1 + 0,004381 \times 10^1 \\
+  &amp;= 0,160081 \times 10^1
+  \end{align*}\]</span></p>
+<p><em>Pemenggalan/chopping</em> <span class="math inline">\(\rightarrow 0,1600 \times 10^1\)</span></p>
+<p><em>Pembulatan/rounding</em> <span class="math inline">\(\rightarrow 0,1601 \times 10^1\)</span></p>
+<p>Galat mutlak pemenggalan <span class="math inline">\(= \left| (0.160081 \times 10^1)-(0.1600 \times 10^1) \right| = 0.000081\)</span></p>
+<p>Galat mutlak pembulatan <span class="math inline">\(= \left| (0.160081 \times 10^1)-(0.1601 \times 10^1) \right| = 0.000019\)</span></p>
+<p><strong>2. Pengurangan</strong></p>
+<p><em>Contoh:</em></p>
+<p>Hitunglah <span class="math inline">\(0.56780 \times 10^5 - 0.56430 \times 10^5\)</span> (5 angka bena)!</p>
+<p><em>Solusi:</em></p>
+<p><span class="math inline">\(0.56780 \times 10^5 - 0.56430 \times 10^5 = 0.00350 \times 10^5\)</span></p>
+<p>Hasil dinormalisasi menjadi <span class="math inline">\(0.350 \times 10^3\)</span> dengan 3 angka bena.</p>
+<p><em>Chopping</em> <span class="math inline">\(\rightarrow 0.350 \times 10^3\)</span></p>
+<p><em>Rounding</em> <span class="math inline">\(\rightarrow 0.350 \times 10^3\)</span></p>
+<p><strong>3. Perkalian</strong></p>
+<p><em>Contoh:</em></p>
+<p>Hitung perkalian <span class="math inline">\(0,4652 \times 10^4\)</span> dengan <span class="math inline">\(0,1456 \times 10^{-1}\)</span> (4 angka bena)!</p>
+<p><em>Solusi:</em></p>
+<ul>
+<li>Kalikan mantis: <span class="math inline">\(0,4652 \times 0,1456 = 0,06773312\)</span></li>
+<li>Jumlahkan pangkat: <span class="math inline">\(4+(-1)=3\)</span></li>
+<li>Gabungkan mantis dengan pangkat: <span class="math inline">\(0,06773312 \times 10^3\)</span></li>
+<li>Normalisasi: <span class="math inline">\(0,6773312 \times 10^2\)</span></li>
+<li><em>Chopping</em> <span class="math inline">\(\rightarrow 0.6773 \times 10^2\)</span></li>
+<li><em>Rounding</em> <span class="math inline">\(\rightarrow 0.6773 \times 10^2\)</span></li>
+</ul>
+<p><strong>4. Pembagian</strong></p>
+<p><em>Contoh:</em></p>
+<p>Hitung pembagian <span class="math inline">\(0,8675 \times 10^{-4}\)</span> dengan <span class="math inline">\(0,2543 \times 10{-2}\)</span> (4 angka bena)!</p>
+<p><em>Solusi:</em></p>
+<ul>
+<li>Bagi mantis: <span class="math inline">\(0,8675 \times 0,2543 = 3,4113252\)</span></li>
+<li>Kurangkan pangkat: <span class="math inline">\(-4+(-2)=-2\)</span></li>
+<li>Gabungkan mantis dengan pangkat: <span class="math inline">\(3,4113252 \times 10^{-2}\)</span></li>
+<li>Normalisasi: <span class="math inline">\(0,34113252 \times 10^{-1}\)</span></li>
+<li><em>Chopping</em> <span class="math inline">\(\rightarrow 0.3411 \times 10^{-1}\)</span></li>
+<li><em>Rounding</em> <span class="math inline">\(\rightarrow 0.3411 \times 10^{-1}\)</span></li>
+</ul>
 </div>
 </div>
 <div id="referensi" class="section level2">

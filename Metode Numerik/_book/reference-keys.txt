@@ -31,3 +31,5 @@ eq:biltitikkambang2
 eq:biltitikkambang3
 bilangan-titik-kambang-ternormalisasi
 pembulatan-bilangan-titik-kambang
+aritmetika-bilangan-titik-kambang
+sistem-bilangan
